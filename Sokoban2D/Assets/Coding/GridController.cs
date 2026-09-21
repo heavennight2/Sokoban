@@ -3,18 +3,18 @@ using UnityEngine.Tilemaps;
 
 public class GridController : MonoBehaviour
 {
+    public int numGoalsInScene;
     public TileBase blockTile;
 
     public static GridController instance;
 
     private Grid grid;
     private Tilemap tilemap;
-    private Tilemap goalsTilemap;
+    private Tilemap specialTilemap;
 
     private void Awake()
     {
-        if (instance != null)
-        {
+        if(instance != null) {
             Destroy(this);
             return;
         }
@@ -22,139 +22,79 @@ public class GridController : MonoBehaviour
         instance = this;
 
         grid = GetComponent<Grid>();
-
-        if (grid == null)
-        {
-            Debug.LogError("There's no Grid component!");
-            return;
+        if(grid == null) {
+            Debug.LogError("there's no grid...did you add this to the wrong place???");
         }
 
-        Transform interactionObject = transform.Find("interaction");
-        Transform goalsObject = transform.Find("goals");
-
-        if (interactionObject == null)
-        {
-            Debug.LogError("Couldn't find the interaction Tilemap!");
-            return;
-        }
-
-        if (goalsObject == null)
-        {
-            Debug.LogError("Couldn't find the goals Tilemap!");
-            return;
-        }
-
-        tilemap = interactionObject.GetComponent<Tilemap>();
-        goalsTilemap = goalsObject.GetComponent<Tilemap>();
-
-        if (tilemap == null)
-        {
-            Debug.LogError("interaction doesn't have a Tilemap component!");
-        }
-
-        if (goalsTilemap == null)
-        {
-            Debug.LogError("goals doesn't have a Tilemap component!");
-        }
+        tilemap = transform.Find("interaction").GetComponent<Tilemap>();
+        specialTilemap = transform.Find("goals").GetComponent<Tilemap>();
     }
+
 
     public Vector3 GridToWorldPos(int x, int y)
     {
         return grid.CellToWorld(new Vector3Int(x, y, 0));
     }
 
+
     public string GetTile(int x, int y)
     {
-        TileBase tile =
-            tilemap.GetTile(new Vector3Int(x, y, 0));
+        TileBase tile = tilemap.GetTile(new Vector3Int(x, y, 0));
 
-        if (tile == null)
-        {
+        if(tile == null) {
             return null;
         }
 
         return tile.name;
     }
 
-    private bool IsBox(Vector3Int position)
-    {
-        TileBase tile = tilemap.GetTile(position);
 
-        return tile == blockTile;
+    public bool IsGoal(int x, int y)
+    {
+        TileBase tile = specialTilemap.GetTile(new Vector3Int(x, y, 0));
+
+        if(tile == null) {
+            return false;
+        }
+
+        return tile.name == "Goal";
     }
 
-    public bool CanPushBlock(
-        Vector3Int blockStart,
-        Vector3Int blockEnd
-    )
+
+    public void PushBlock(Vector3Int start, Vector3Int end, int xmove, int ymove)
+    {
+        if(GetTile(end.x, end.y) == "Box") {
+
+            Vector3Int blockStart = end;
+
+            Vector3Int blockEnd =
+                blockStart + new Vector3Int(xmove, ymove, 0);
+
+            PushBlock(blockStart, blockEnd, xmove, ymove);
+        }
+
+        tilemap.SetTile(start, null);
+
+        // draw a box where it ends up
+        tilemap.SetTile(end, blockTile);
+    }
+
+
+    public bool CanPushBlock(Vector3Int blockStart, Vector3Int blockEnd)
     {
         Vector3Int direction = blockEnd - blockStart;
 
-        while (IsBox(blockEnd))
-        {
+        while(GetTile(blockEnd.x, blockEnd.y) == "Box") {
             blockEnd += direction;
         }
 
-        TileBase targetTile = tilemap.GetTile(blockEnd);
+        string target = GetTile(blockEnd.x, blockEnd.y);
 
-        if (targetTile == null)
+        if(target == null || target == "goal")
         {
             return true;
         }
 
         return false;
-    }
-
-    public void PushBlock(
-        Vector3Int blockStart,
-        Vector3Int blockEnd
-    )
-    {
-        Vector3Int direction = blockEnd - blockStart;
-        Vector3Int currentPosition = blockEnd;
-
-        
-        while (IsBox(currentPosition))
-        {
-            currentPosition += direction;
-        }
-
-        while (currentPosition != blockStart)
-        {
-            tilemap.SetTile(currentPosition, blockTile);
-            currentPosition -= direction;
-        }
-
-        tilemap.SetTile(blockStart, null);
-
-        CheckWin();
-    }
-
-    private void CheckWin()
-    {
-        int numberOfGoals = 0;
-
-        foreach (
-            Vector3Int position
-            in goalsTilemap.cellBounds.allPositionsWithin
-        )
-        {
-            if (goalsTilemap.HasTile(position))
-            {
-                numberOfGoals++;
-
-                if (!IsBox(position))
-                {
-                    return;
-                }
-            }
-        }
-
-        if (numberOfGoals > 0)
-        {
-            Debug.Log("YOU WIN!");
-
-            Time.timeScale = 0f;
-        }
     }
 }

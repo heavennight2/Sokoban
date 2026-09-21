@@ -1,0 +1,54 @@
+Asset Pack made by Loris C.
+
+My Page: https://lorisc.itch.io/
+Asset Page: (https://lorisc.itch.io/puzzle-system-asset-pack)
+Contact: lorisc.pixel@gmail.com
+
+==========================================================================
+
+Hello! Thanks a lot for downloading my pack
+
+In this pack, you will find sprite sheets.
+
+Or, if you prefer, all sprites in a folder already separated for you.
+
+The aseprite files are also available
+
+==========================================================================
+Info :
+
+I'm very open to criticism. If you have any questions or suggestions, be sure to comment under the itch.io asset page (linked above)
+
+Making sure the pack pleases everyone as best as I can is very important to me.
+
+
+Info for the separated assets:
+
+If you are not using GameMaker Studio 2, don't worry about the "_stripX" suffix after the name of an animated sprite. It is a feature in GMS that lets GameMaker split the animation automatically for you, with X being the number of frames in the animation.
+
+===========================================================================
+
+Licensing:
+
+
+- You can:
+
+	- Use the assets in commercial and non-commercial projects
+
+	- Modify the assets to fit your needs
+
+- You can't:
+
+	- Resell or redistribute the assets (even if modified)
+
+	- Claim the assets or the pack as your own
+
+	- Use the assets in projects that promote hate, discrimination, NSFW, or harassment
+	
+	- Use the assets to train AI image generators
+
+	- Use the assets in a crypto, NFT, p2e, or meta-related project
+
+
+
+Note: Credit is appreciated but not required. License is non-exclusive.
