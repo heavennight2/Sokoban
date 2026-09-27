@@ -466,6 +466,9 @@ Tilemap:
   - serializedVersion: 2
     m_RefCount: 21
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - serializedVersion: 2
+    m_RefCount: 0
+    m_Data: {r: 0.3660378, g: 0.3660378, b: 0.3660378, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -727,6 +730,7 @@ MonoBehaviour:
   buttonOffTile: {fileID: 11400000, guid: 740b99acd8fcc72428efddf12d35eea9, type: 2}
   spikesOnTile: {fileID: 11400000, guid: 1f0ec6c189f2b0c4dbaeeb84760989f6, type: 2}
   spikesOffTile: {fileID: 11400000, guid: 908746fd193295448a6aa5c0983196bb, type: 2}
+  buttonsNeeded: 1
   chestOpenTile: {fileID: 11400000, guid: 5f53dcaa518d52247aff8c2d6e3d78c4, type: 2}
 --- !u!1 &528486423
 GameObject:
@@ -871,7 +875,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 8ecdc2463f4d57845bce054fac8e1b02, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1551,13 +1555,13 @@ Tilemap:
   m_TileColorArray:
   - serializedVersion: 2
     m_RefCount: 0
-    m_Data: {r: 0.9037736, g: 0.9467054, b: 1, a: 1}
+    m_Data: {r: 0.7660377, g: 0.38012812, b: 0.38012812, a: 1}
   - serializedVersion: 2
     m_RefCount: 37
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - serializedVersion: 2
     m_RefCount: 0
-    m_Data: {r: 0.79506123, g: 0.36571366, b: 0.49350992, a: 1}
+    m_Data: {r: 0.5773585, g: 0.14706294, b: 0.14706294, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}

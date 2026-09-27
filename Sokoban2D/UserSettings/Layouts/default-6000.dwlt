@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2048
     height: 1060.8
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 100
+  controlID: 121
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 40
+  controlID: 41
   draggingID: 0
 --- !u!114 &5
 MonoBehaviour:
@@ -147,8 +147,8 @@ MonoBehaviour:
     y: 0
     width: 272
     height: 628
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 226}
+  m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 41
+  controlID: 42
   draggingID: 0
 --- !u!114 &12
 MonoBehaviour:
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 42
+  controlID: 43
   draggingID: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -325,12 +325,12 @@ MonoBehaviour:
     height: 628
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -732,7 +732,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/assets/Puzzle_System_v1.0.0_/PuzzleSystem/Separated_Assets/Purple/Traps_and_Props
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/assets/Puzzle_System_v1.0.0_/PuzzleSystem/Separated_Assets/Purple/Traps_and_Props
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\heave\Documents\GitHub\Sokoban\Sokoban2D
   m_LockTracker:
@@ -751,18 +751,18 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 69.19995}
     m_SelectedIDs:
-    - m_rawData: 568105584918845416
+    - m_rawData: 568105584918842990
     m_LastClickedID:
-      m_rawData: 568105584918845416
+      m_rawData: 568105584918842990
     m_ExpandedIDs:
-    - m_rawData: 568105589213755464
+    - m_rawData: 568105589213755454
     - m_rawData: 0
-    - m_rawData: 568105584918842988
+    - m_rawData: 568105584918842990
     - m_rawData: 568105584918843288
-    - m_rawData: 568105584918845378
-    - m_rawData: 568105584918845382
-    - m_rawData: 568105584918845390
-    - m_rawData: 568105584918845400
+    - m_rawData: 568105584918843360
+    - m_rawData: 568105584918843362
+    - m_rawData: 568105584918843364
+    - m_rawData: 568105584918843366
     - m_rawData: 568105587066273791
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 568105584918842988
+    - m_rawData: 568105584918842990
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -825,10 +825,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_rawData: 568105589213717618
+    m_SelectedInstanceIDs: []
     m_LastClickedEntityId:
-      m_rawData: 568105589213717618
+      m_rawData: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_rawData: 568105584918845316
@@ -970,24 +969,22 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_rawData: 568105589213717618
+      m_SelectedIDs: []
       m_LastClickedID:
-        m_rawData: 568105589213717618
+        m_rawData: 0
       m_ExpandedIDs:
-      - m_rawData: 568105589213729646
-      - m_rawData: 568105589213730168
-      - m_rawData: 568105589213730388
-      - m_rawData: 568105589213730796
-      - m_rawData: 568105589213731472
-      - m_rawData: 568105589213750500
-      - m_rawData: 568105589213750730
-      - m_rawData: 568105589213754492
-      - m_rawData: 568105589213754718
+      - m_rawData: 568105589213704088
+      - m_rawData: 568105589213704258
+      - m_rawData: 568105589213704498
+      - m_rawData: 568105589213704668
+      - m_rawData: 568105589213704960
+      - m_rawData: 568105589213705848
+      - m_rawData: 568105589213706024
+      - m_rawData: 568105589213724462
+      - m_rawData: 568105589213725136
+      - m_rawData: 568105589213725334
       - m_rawData: 568105589213755966
-      - m_rawData: 568105584918844094
-      - m_rawData: 568105584918845958
-      - m_rawData: 568105584918846090
+      - m_rawData: 568105584918855056
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1571,7 +1568,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -0.24472937, y: 0.10346775, z: -0.014505314}
     speed: 2
-    m_Value: {x: -0.7215275, y: 0.13855681, z: -0.016982175}
+    m_Value: {x: -0.24472937, y: 0.10346775, z: -0.014505314}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1624,7 +1621,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 5.2564807
     speed: 2
-    m_Value: 5.504168
+    m_Value: 5.2564807
   m_Ortho:
     m_Target: 1
     speed: 2

@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GridController : MonoBehaviour
 {
@@ -14,6 +16,7 @@ public class GridController : MonoBehaviour
 
     // Level 1 = 1
     // Level 2 = 3
+    // Level 3 = حسب عدد الأزرار
     public int buttonsNeeded = 1;
 
     // Chest
@@ -24,6 +27,9 @@ public class GridController : MonoBehaviour
     private Grid grid;
     private Tilemap tilemap;
     private Tilemap specialTilemap;
+
+    // Prevent opening chest more than once
+    private bool levelComplete = false;
 
 
     private void Awake()
@@ -52,6 +58,10 @@ public class GridController : MonoBehaviour
             transform.Find("goals").GetComponent<Tilemap>();
     }
 
+
+    // =========================
+    // GRID
+    // =========================
 
     public Vector3 GridToWorldPos(int x, int y)
     {
@@ -83,6 +93,10 @@ public class GridController : MonoBehaviour
     }
 
 
+    // =========================
+    // GOALS
+    // =========================
+
     public bool IsGoal(int x, int y)
     {
         TileBase tile =
@@ -98,6 +112,10 @@ public class GridController : MonoBehaviour
         return tile.name == "Goal";
     }
 
+
+    // =========================
+    // BUTTON
+    // =========================
 
     public bool IsButton(int x, int y)
     {
@@ -128,19 +146,19 @@ public class GridController : MonoBehaviour
         string target =
             GetTile(blockEnd.x, blockEnd.y);
 
-        // Box can move into empty interaction space
+        // Empty space
         if(target == null)
         {
             return true;
         }
 
-        // Cannot push another Box
+        // Cannot push another box
         if(target == "Box")
         {
             return false;
         }
 
-        // Everything else blocks the Box
+        // Everything else blocks the box
         return false;
     }
 
@@ -152,25 +170,23 @@ public class GridController : MonoBehaviour
         int ymove
     )
     {
-        // Remove Box from old cell
+        // Remove box from old position
         tilemap.SetTile(start, null);
 
-        // Put Box in new cell
+        // Put box in new position
         tilemap.SetTile(end, blockTile);
 
-        // Re-check all buttons
+        // Check all buttons
         UpdateButtons();
     }
 
 
     // =========================
-    // BUTTONS
+    // BUTTON SYSTEM
     // =========================
 
     public void ActivateButton(int x, int y)
     {
-        // Player script already calls this.
-        // We simply check every button.
         UpdateButtons();
     }
 
@@ -192,7 +208,6 @@ public class GridController : MonoBehaviour
                 continue;
             }
 
-
             // Ignore anything that isn't a button
             if(
                 buttonTile.name != "ButtonOff" &&
@@ -201,7 +216,6 @@ public class GridController : MonoBehaviour
             {
                 continue;
             }
-
 
             bool hasBox =
                 GetTile(position.x, position.y) == "Box";
@@ -220,7 +234,6 @@ public class GridController : MonoBehaviour
 
                 buttonsOn++;
             }
-
 
             // NO BOX ON BUTTON
             else
@@ -244,13 +257,11 @@ public class GridController : MonoBehaviour
         );
 
 
-        // Enough buttons are pressed
+        // Enough buttons pressed
         if(buttonsOn >= buttonsNeeded)
         {
             OpenSpikes();
         }
-
-        // Not enough buttons
         else
         {
             CloseSpikes();
@@ -332,11 +343,50 @@ public class GridController : MonoBehaviour
 
     public void OpenChest(int x, int y)
     {
+        // Don't activate twice
+        if(levelComplete)
+        {
+            return;
+        }
+
+        levelComplete = true;
+
+        // Open chest
         tilemap.SetTile(
             new Vector3Int(x, y, 0),
             chestOpenTile
         );
 
         Debug.Log("LEVEL COMPLETE!");
+
+        // Go to next level
+        StartCoroutine(LoadNextLevel());
+    }
+
+
+    // =========================
+    // NEXT LEVEL
+    // =========================
+
+    private IEnumerator LoadNextLevel()
+    {
+        // Wait so player can see chest open
+        yield return new WaitForSeconds(1f);
+
+        int currentScene =
+            SceneManager.GetActiveScene().buildIndex;
+
+        int nextScene =
+            currentScene + 1;
+
+        // Load next scene if it exists
+        if(nextScene < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            Debug.Log("NO MORE LEVELS!");
+        }
     }
 }
