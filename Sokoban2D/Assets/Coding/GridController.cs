@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using System.Collections;
 
 public class GridController : MonoBehaviour
@@ -13,7 +14,7 @@ public class GridController : MonoBehaviour
     public TileBase buttonOffTile;
     public TileBase spikesOnTile;
     public TileBase spikesOffTile;
-
+    public GameObject winPanel;
     // Level 1 = 1
     // Level 2 = 3
     // Level 3 = حسب عدد الأزرار
@@ -21,6 +22,10 @@ public class GridController : MonoBehaviour
 
     // Chest
     public TileBase chestOpenTile;
+
+    // Chest Sound
+    public AudioSource audioSource;
+    public AudioClip chestSound;
 
     public static GridController instance;
 
@@ -56,6 +61,31 @@ public class GridController : MonoBehaviour
 
         specialTilemap =
             transform.Find("goals").GetComponent<Tilemap>();
+    }
+
+
+    // =========================
+    // RESTART LEVEL
+    // =========================
+
+    private void Update()
+    {
+        // Press R to restart the current level
+        if(
+            Keyboard.current != null &&
+            Keyboard.current.rKey.wasPressedThisFrame
+        )
+        {
+            RestartLevel();
+        }
+    }
+
+
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(
+            SceneManager.GetActiveScene().buildIndex
+        );
     }
 
 
@@ -357,6 +387,12 @@ public class GridController : MonoBehaviour
             chestOpenTile
         );
 
+        // Play chest sound
+        if(audioSource != null && chestSound != null)
+        {
+            audioSource.PlayOneShot(chestSound);
+        }
+
         Debug.Log("LEVEL COMPLETE!");
 
         // Go to next level
@@ -370,7 +406,7 @@ public class GridController : MonoBehaviour
 
     private IEnumerator LoadNextLevel()
     {
-        // Wait so player can see chest open
+        // Wait so player can see/hear chest
         yield return new WaitForSeconds(1f);
 
         int currentScene =
@@ -386,7 +422,10 @@ public class GridController : MonoBehaviour
         }
         else
         {
-            Debug.Log("NO MORE LEVELS!");
-        }
+           if(winPanel != null)
+    {
+        winPanel.SetActive(true);
     }
+    }
+}
 }
